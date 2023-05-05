@@ -1,0 +1,24 @@
+html{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+body{
+    border: black 5px solid;
+    padding: 10%;
+}
+ 
+.container {
+    height: 100vh;
+
+
+}
+button{
+    border: 1px solid black;
+}
+
+.row{
+    border: 1px solid black;
+}
