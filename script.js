@@ -10,7 +10,23 @@ let number2 = "";
 function showOnDisplay(value) {
 
     display.value += value;
-   
+    if (value === '=') operate(number1,number2, operator);
+
+    if (flag === 1){
+        number2 += value;
+    }
+    else{
+        if (isNaN(parseInt(value)))
+        {
+            operator = value;
+            flag = 1;
+        }
+        else
+        {
+            number1 += value;
+        }
+    }
+ 
 }
     
 
@@ -19,39 +35,40 @@ function clearDisplay(value) {
     display.value = '';
 }
 
-function add() {
-    display.value = number1 + number2;
+function add(n1, n2) {
+    display.value = n1 + n2;
 }
 function substract() {
-    display.value = number1 - number2;
+    display.value = n1 - n2;
 }
 function multiply() {
-    display.value = number1 * number2;
+    display.value = n1 * n2;
 }
 function divide() {
-    display.value = number1 / number2;
+    display.value = n1 / n2;
 }
 
-function operate(equation) {
-    console.log(equation)
+function operate(number1, number2, operator) {
 
-    number1
+    // converson from string to int
+    let n1 = parseInt(number1);
+    let n2 = parseInt(number2);
 
     if (operator == '+')
     {
-        add(number1, number2);
+        add(n1, n2);
     }
     else if (operator == '-')
     {
-        substract(number1, number2);
+        substract(n1, n2);
     }
     else if (operator == '*')
     {
-        multiply(number1, number2);
+        multiply(n1, n2);
     }
     else if (operator == '/')
     {
-        divide(number1, number2);
+        divide(n1, n2);
     }
 }
  /* let buttons = document.querySelectorAll("button");
