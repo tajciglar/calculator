@@ -1,4 +1,3 @@
-const container = document.querySelector('#container');
 let display = document.querySelector("#display");
 
 let operator = null;
@@ -12,13 +11,27 @@ function showOnDisplay(value) {
     if (value === '=') {
         display.value = operate(number);
     }
-    if (isNaN(parseInt(value))) {
+    // checking if value is a number or not 
+    if (isNaN(parseFloat(value)) && value != '.') {
+
         number.push(value);
+    // if value is a number 
+    } else if (value === '.') {
+        const lastNumber = number[number.length - 1];
+
+        // If the last number already contains a decimal point, don't add another.
+        if (!lastNumber.includes('.')) {
+            number[number.length - 1] += value;
+        }
+
     } else {
+
         const lastNumber = number[number.length-1];
 
         if (lastNumber && !isNaN(parseFloat(lastNumber))) {
+
             number[number.length-1] += value;
+
         } else {
             number.push(value);
         }
@@ -32,15 +45,15 @@ function clearDisplay() {
     number.length = 0;
 }
 function operate(number) {
-    result = parseInt(number[0]);
+    result = parseFloat(number[0]);
+    // console.log(number);
     let currentOperator = null;
 
     for (let i = 1; i < number.length; i++) {
         const value = number[i];
-
-        if (!isNaN(parseInt(value))) {
-            const currentValue = parseInt(value);
-
+        
+        if (!isNaN(parseFloat(value))) {
+            const currentValue = parseFloat(value);
             if (currentOperator === '+') {
             result += currentValue;
             } else if (currentOperator === '-') {
