@@ -27,35 +27,33 @@ function showOnDisplay(value) {
     
 
 // clears the display
-function clearDisplay(value, result) {
+function clearDisplay() {
     display.value = '';
-    const number = [];
-    
+    number.length = 0;
 }
-
 function operate(number) {
-
-    let result = parseInt(number[0]);
+    result = parseInt(number[0]);
     let currentOperator = null;
 
     for (let i = 1; i < number.length; i++) {
-    const value = number[i];
+        const value = number[i];
 
-    if (!isNaN(parseInt(value))) {
-        const currentValue = parseInt(value);
+        if (!isNaN(parseInt(value))) {
+            const currentValue = parseInt(value);
 
-        if (currentOperator === '+') {
-        result += currentValue;
-        } else if (currentOperator === '-') {
-        result -= currentValue;
-        } else if (currentOperator === '*') {
-        result *= currentValue;
-        } else if (currentOperator === '/') {
-        result /= currentValue;
+            if (currentOperator === '+') {
+            result += currentValue;
+            } else if (currentOperator === '-') {
+            result -= currentValue;
+            } else if (currentOperator === '*') {
+            result *= currentValue;
+            } else if (currentOperator === '/') {
+            result /= currentValue;
+            }
+        } else {
+            currentOperator = value;
         }
-    } else {
-        currentOperator = value;
     }
-    }
-    return(result)
+    
+    return result
 }
