@@ -3,12 +3,17 @@ let display = document.querySelector("#display");
 let operator = null;
 const number = [];
 
+// Set a flag to indicate if the event is a keyboard event
+let isKeyboardEvent = false;
+
 // shows on display
 function showOnDisplay(value) {
-
-    display.value += value;
+    if (!isKeyboardEvent) {
+        display.value += value;
+    }
+    
     // when '=' is clicked its calling the function operate
-    if (value === '=') {
+    if (value === '=' || value ==='Enter') {
         display.value = operate(number).toFixed(2);
     }
     // checking if value is a number or not 
@@ -39,6 +44,8 @@ function showOnDisplay(value) {
     number.forEach((num, index) => {
         number[index] = num.replace(/(\.\d*)\./, '$1');
     });
+
+    
 }
     
 
@@ -73,3 +80,21 @@ function operate(number) {
     
     return result;
 }
+
+const input = document.getElementById("display");
+
+// Add focus and blur event listeners to detect keyboard input
+input.addEventListener("focus", () => {
+    isKeyboardEvent = true;
+});
+
+input.addEventListener("blur", () => {
+    isKeyboardEvent = false;
+});
+
+// Use keyup event to handle keyboard input
+input.addEventListener("keydown", function (event) {
+    const key = event.key;
+    
+    showOnDisplay(key);
+});
