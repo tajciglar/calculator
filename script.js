@@ -9,11 +9,10 @@ function showOnDisplay(value) {
     display.value += value;
     // when '=' is clicked its calling the function operate
     if (value === '=') {
-        display.value = operate(number);
+        display.value = operate(number).toFixed(2);
     }
     // checking if value is a number or not 
     if (isNaN(parseFloat(value)) && value != '.') {
-
         number.push(value);
     // if value is a number 
     } else if (value === '.') {
@@ -36,6 +35,10 @@ function showOnDisplay(value) {
             number.push(value);
         }
     }
+
+    number.forEach((num, index) => {
+        number[index] = num.replace(/(\.\d*)\./, '$1');
+    });
 }
     
 
@@ -68,5 +71,5 @@ function operate(number) {
         }
     }
     
-    return result
+    return result;
 }
