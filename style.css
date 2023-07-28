@@ -36,3 +36,12 @@ button{
     background-color: bisque;
     border-radius: 8px;
 }
+.sign{
+    color: orange;
+}
+
+#clear{
+    padding: 0 20px 0 20px;
+    position: relative;
+}
+
